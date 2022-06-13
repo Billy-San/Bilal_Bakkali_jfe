@@ -1,10 +1,9 @@
 package com.ehb.examenjava.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Auto {
@@ -24,6 +23,9 @@ public class Auto {
 
     @NotBlank
     private String deuren;
+
+    @OneToMany(mappedBy = "autos")
+    private List<Auto> autoList = new ArrayList<>();
 
     public Auto() {
     }
@@ -67,4 +69,13 @@ public class Auto {
     public void setDeuren(String deuren) {
         this.deuren = deuren;
     }
+
+    public List<Auto> getAutoList() {
+        return autoList;
+    }
+
+    public void setAutoList(List<Auto> autoList) {
+        this.autoList = autoList;
+    }
+
 }
